@@ -1,0 +1,17 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: get host list using partial string
+      set_fact:
+       host_list: "{{ lookup('nios', 'record:host', filter={'name~':'.*[1,2,3]'}, provider=nios_provider) }}"
+    - name: display host list using partial string
+      debug:
+       var: "{{ host_list }}"
+       
+    - name: check the leaf01 return variable
+      debug:
+        var: host_list
+    - name: debug specific variable (ipv4 address)
+      debug:
+        var: host_list.ipv4addrs.ipv4addr

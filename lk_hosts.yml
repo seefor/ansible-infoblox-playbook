@@ -1,0 +1,10 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: get host list using partial string
+      set_fact:
+       host_list: "{{ lookup('nios', 'record:host', filter={'name':'sif1.ansible.com'}, provider=nios_provider) }}"
+    - name: display host list using partial string
+      debug:
+       msg: "{{ host_list }}"

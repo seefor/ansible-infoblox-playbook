@@ -1,0 +1,11 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: fetch all networkview objects
+      set_fact:
+        members: "{{ lookup('nios', 'member', provider=nios_provider) }}"
+
+    - name: check the networkviews
+      debug:
+        var: members
