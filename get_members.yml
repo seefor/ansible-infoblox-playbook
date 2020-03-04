@@ -1,0 +1,20 @@
+---
+- name: Infoblox get all Members
+  hosts: localhost
+  vars:
+    nios_provider:
+      host: gm.baksh.com
+      username: admin
+      password: infoblox
+      wapi_version: 2.6.1
+  connection: local
+
+
+  tasks:
+    - name: fetch all members
+      set_fact:
+        member: "{{ lookup('nios', 'member', provider=nios_provider) }}"
+
+    - name: check the member
+      debug:
+        var: member
