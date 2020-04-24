@@ -4,7 +4,7 @@
   tasks:
     - name: get host list using partial string
       set_fact:
-       host_list: "{{ lookup('nios', 'record:host', filter={'name~':'sif[1,2,3]'}, provider=nios_provider) }}"
+       host: "{{ lookup('nios', 'record:host', filter={'name~':'sif[1,2,3]'}, provider=nios_provider) }}"
     - name: display host list using partial string
       debug:
-       msg: "{{ host_list }}"
+       msg: "{{ host }}"

@@ -1,0 +1,11 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: return next available IP address for network 10.10.2.0/24
+      set_fact:
+        ipaddr: "{{ lookup('nios_next_ip', '10.10.2.0/24', provider=nios_provider) }}"
+        provider: "{{ nios_provider }}"
+    - name: display IP
+      debug:
+        var: ipaddr

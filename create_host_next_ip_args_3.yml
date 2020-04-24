@@ -1,0 +1,21 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: return the next 2 available IP addresses for network 10.10.2.0/24
+      set_fact:
+        ipaddr: "{{ lookup('nios_next_ip', '10.10.2.0/24', num=num_ip, provider=nios_provider) }}"
+        provider: "{{nios_provider}}"
+    - name: Print the range of IPs calculated above
+      debug:
+        var: ipaddr, new_hostname
+    - name: configure a host
+      nios_host_record:
+        name: "{{ item.1 }}"
+        ipv4addrs:
+            - ipv4addr: "{{ item.0 }}"
+        comment: this is a test comment
+        state: present
+        provider: "{{nios_provider}}"
+      loop: "{{ ipaddr|zip(new_hostname)|list }}"   
+

@@ -1,0 +1,18 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: create a the next network in 10.10.0.0/16
+      set_fact:
+        networkaddr: "{{ lookup('nios_next_network', '10.10.0.0/16', cidr=24, provider=nios_provider) }}"
+        provider: "{{nios_provider}}"
+    - name: Print the range of IPs calculated above
+      debug:
+        var: networkaddr
+    - name: configure a network ipv4
+      nios_network:
+        network: "{{ item }}"
+        comment: this is a test comment
+        state: present
+        provider: "{{nios_provider}}"
+      loop: "{{ networkaddr }}"
