@@ -1,6 +1,7 @@
 # ansible-infoblox-playbook
 <!-- wp:paragraph -->
-Blog : https://sifbaksh.com
+You can find examples on HOWTO use these playbooks on myBlog : https://sifbaksh.com
+
 <p>For the next upcoming weeks, I'll be posting more about getting started with Ansible and Infoblox.  I've had quite a few folks reached out to me asking for additional information around this integration, so I decided to do a series of blog post around this.<br>I myself is a beginner to Ansible(so please forgive my novice examples)<br>What I'm using:</p>
 <!-- /wp:paragraph -->
 
