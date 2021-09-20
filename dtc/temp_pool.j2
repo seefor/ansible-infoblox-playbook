@@ -1,0 +1,16 @@
+---
+  - name: 'create DTC Pool'
+    infoblox.nios_modules.nios_dtc_pool:
+      name: {{ pool }}
+      lb_preferred_method: ROUND_ROBIN
+      servers:
+{% for item in servers %}
+      - server: {{ item.name }} 
+        ratio: 1
+{% endfor %}
+      monitors:
+      - name: monitor1
+        type: icmp
+      comment: Created with Ansible
+      state: present
+      provider: "{{ nios_provider }}"

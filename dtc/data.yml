@@ -1,0 +1,22 @@
+servers:
+  - name: Colossus
+    ip: 1.1.1.1
+    comment: APP1
+  - name: Blind Al
+    ip: 1.1.1.2
+    comment: APP1    
+  - name: Dopinder
+    ip: 1.1.1.3
+    comment: APP1
+    
+pool: Deadpool
+lbdn_name: Marvel
+lbdn_zone: 'lab.local'
+lbdn_pattern: '*.lab.local'
+comment: APP1
+
+nios_provider:
+  host: 192.168.0.200
+  username: admin
+  password: infoblox
+  wapi_version: "2.12"

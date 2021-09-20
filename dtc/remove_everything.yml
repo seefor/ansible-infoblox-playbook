@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  vars_files:
+    - data.yml
+
+  tasks:
+
+    - name: Call Task to Remove LBDN
+      include_tasks: remove_dtc_lbdn.yml
+      with_items: '[{{ lbdn_name }}, {{ pool }}, {{ lbdn_zone }}, {{ lbdn_pattern }}]'
+
+    - name: Call Task to Remove Pool
+      include_tasks: remove_dtc_pool.yml
+
+    - name: Call Task to Remove Servers
+      include_tasks: remove_dtc_server.yml
+      loop: "{{ servers }}"
+
+    - name: Call Task to Restart Services
+      include_tasks: restart_services.yml

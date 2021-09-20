@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  vars_files:
+    - data.yml
+
+  tasks:
+    - name: Call Task to Create Servers
+      include_tasks: task_dtc_server.yml
+      loop: "{{ servers }}" 
+
+    - name: Create c_pool.yml playbook
+      template:
+        src: "temp_pool.j2"
+        dest: "c_pool.yml"
+      with_items: '[{{ servers }}, {{ pool }}]'
+
+    - name: "Create Pool"
+      include_tasks: c_pool.yml
+
+    - name: Create LBDN
+      include_tasks: task_dtc_lbdn.yml
+      with_items: '[{{ lbdn_name }}, {{ pool }}, {{ lbdn_zone }}, {{ lbdn_pattern }}]'
+
+    - name: "Create Restart Services"
+      include_tasks: restart_services.yml

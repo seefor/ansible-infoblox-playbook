@@ -1,0 +1,11 @@
+---
+  - name: 'Remove DTC Pool'
+    infoblox.nios_modules.nios_dtc_pool:
+      name: Deadpool
+      lb_preferred_method: ROUND_ROBIN
+      monitors:
+      - name: monitor1
+        type: icmp
+      comment: Created with Ansible
+      state: absent
+      provider: "{{ nios_provider }}"
