@@ -13,6 +13,6 @@
       monitors:
       - name: monitor1
         type: icmp
-      comment: Created with Ansible
+      comment: "{ comment }"
       state: present
       provider: "{{ nios_provider }}"
