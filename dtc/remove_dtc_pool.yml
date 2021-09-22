@@ -1,7 +1,7 @@
 ---
   - name: 'Remove DTC Pool'
     infoblox.nios_modules.nios_dtc_pool:
-      name: Deadpool
+      name: "{{ pool }}"
       lb_preferred_method: ROUND_ROBIN
       monitors:
       - name: monitor1
