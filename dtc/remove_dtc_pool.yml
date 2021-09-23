@@ -6,6 +6,5 @@
       monitors:
       - name: monitor1
         type: icmp
-      comment: Created with Ansible
       state: absent
       provider: "{{ nios_provider }}"
