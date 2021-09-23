@@ -13,6 +13,5 @@
       - "{{ lbdn_pattern }}"
       types:
       - A
-      comment: Created with Ansible
       state: absent
       provider: "{{ nios_provider }}"
